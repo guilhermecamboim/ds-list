@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.6</version>
+		<version>4.1.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.devsuperior</groupId>
@@ -15,7 +15,21 @@
 	<description>Intesivão Java Spring</description>
 	<properties>
 		<java.version>17</java.version>
+		<!-- Versões acima das gerenciadas pelo Spring Boot 4.1.2, para corrigir vulnerabilidades (fix/security) -->
+		<jackson-bom.version>3.1.8</jackson-bom.version>
+		<logback.version>1.6.7</logback.version>
+		<json-smart.version>2.6.1</json-smart.version>
 	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<!-- asm (transitiva de json-smart, escopo test): 9.7.1 é vulnerável -->
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm</artifactId>
+				<version>9.11.1</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
